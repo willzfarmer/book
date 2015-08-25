@@ -2,18 +2,18 @@
 
 ## Data
 
-(( a table with manually collected numbers))
+| Framework | Github Stars | Link |
+| -- | -- | -- |
+| Bootstrap | 85289 | https://github.com/twbs/bootstrap |
+| Angular | 41895 | https://github.com/angular/angular.js |
+| HTML5-Boilerplate | 30895 | https://github.com/h5bp/html5-boilerplate |
+| Meteor | 27643 | https://github.com/meteor/meteor |
+| Rails | 27441 | https://github.com/rails/rails |
 
 ## Visualization
 
-{% svg %}
-
-<!-- a barchart -->
-<rect x="0" width="20" height="100" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)" />
-
-{% endsvg %}
-
+{% include "./graph.svg" %}
 
 ## Recommendation
 
-(( recommend a framework, few sentences to justify your recommendation))
+I recommend Boostrap!
