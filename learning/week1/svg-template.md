@@ -39,7 +39,11 @@ Draw negative numbers in red and positive numbers in green.
 
 {% set numbers = [43,21,-13,32,20,5,-8,29,9] %}
 {% for number in numbers %}
-<li>{{number}}</li>
+{% if (number < 0) %}
+<li><p style="color:red">{{number}}</li>
+{% else %}
+<li><p style="color:green">{{number}}</li>
+{% endif %}
 {% endfor %}
 
 (Hint: use the [if tag](https://mozilla.github.io/nunjucks/templating.html#if))
@@ -53,7 +57,7 @@ Draw negative numbers in red and positive numbers in green.
 
 <svg width="500" height="200">
 {% for number in numbers %}
-    <rect x="{{loop.index * 20}}" width="20" height="100" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)" />
+<rect x="{{loop.index * 25}}" y="{{ 50 - number }}" width="20" height="{{number}}" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)" />
 {% endfor %}
 </svg>
 
@@ -65,7 +69,7 @@ Draw negative numbers in red and positive numbers in green.
 
 <svg width="500" height="200">
 {% for number in numbers %}
-    <rect y="{{loop.index * 20}}" width="100" height="20" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)" />
+<rect y="{{loop.index * 25}}" width="{{ number }}" height="20" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)" />
 {% endfor %}
 </svg>
 
@@ -79,12 +83,12 @@ Draw negative numbers in red and positive numbers in green.
 * You will need to create a nested for loop.
 
 <table>
-    {% for rows in data %}
-        <tr>
-            <!-- Add your code here  -->
-            <td>10</td><td>15</td>
-        </tr>
-    {% endfor %}
+{% for row in data %}
+<tr>
+<td>{{ row[0] }}</td>
+<td>{{ row[1] }}</td>
+</tr>
+{% endfor %}
 </table>
 
 
@@ -97,7 +101,7 @@ Draw negative numbers in red and positive numbers in green.
 
 <svg width="500" height="200" style="border:1px solid grey">
 {% for point in data %}
-    <circle cx="{{point[0]}}" cy="{{point[1]}}" r="2" stroke="black" stroke-width="3" fill="red" />
+<circle cx="{{12 * point[0]}}" cy="{{3 * point[1]}}" r="2" stroke="black" stroke-width="3" fill="red" />
 {% endfor %}
 </svg>
 
@@ -110,6 +114,6 @@ of the circle to represent the third value.
 
 <svg width="500" height="200" style="border:1px solid grey">
 {% for point in data %}
-    <circle cx="{{point[0]}}" cy="{{point[1]}}" r="2" stroke="black" stroke-width="3" fill="red" />
+<circle cx="{{12 * point[0]}}" cy="{{3 * point[1]}}" r="{{ 2 + point[2] }}" stroke="black" stroke-width="3" fill="red" />
 {% endfor %}
 </svg>
