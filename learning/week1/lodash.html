@@ -40,7 +40,7 @@
     <body>
         <!-- body:start -->
         
-    <div class="book" data-level="1.2.2" data-basepath="../.." data-revision="Mon Aug 24 2015 18:10:58 GMT-0600 (MDT)">
+    <div class="book" data-level="1.2.2" data-basepath="../.." data-revision="Fri Aug 28 2015 14:09:18 GMT-0600 (MDT)">
     
 
 <div class="book-summary">
@@ -443,8 +443,7 @@ return _.find(data, {name: &apos;Mary&apos;})
 <p>[{&quot;name&quot;:&quot;John&quot;,&quot;age&quot;:45},{&quot;name&quot;:&quot;Mary&quot;,&quot;age&quot;:32},{&quot;name&quot;:&quot;Peter&quot;,&quot;age&quot;:54},{&quot;name&quot;:&quot;Jane&quot;,&quot;age&quot;:12}]</p>
 <h3 id="q-what-are-the-ages-of-these-people">Q: What are the ages of these people?</h3>
 <p><pre>
-// replace this code with your solution that uses lodash
-var result = [45, 32, 54, 12]
+var result = _.pluck(data, &apos;age&apos;);
 return result
 </pre></p>
 <p>The names are 45,32,54,12</p>
@@ -452,14 +451,14 @@ return result
 <p><pre>
 // replace this code with your solution that uses lodash
 // hint: use _.pluck and _.min
-var result = 12
+var result = _.min(_.pluck(data, &apos;age&apos;))
 return result
 </pre></p>
 <p>The youngest age is 12.</p>
 <h3 id="q-what-is-the-oldest-age">Q. What is the oldest age?</h3>
 <p><pre>
 // replace this code with your solution that uses lodash
-var result = 54
+var result = _.max(_.pluck(data, &apos;age&apos;))
 return result
 </pre></p>
 <p>The oldest age is 54.</p>
@@ -467,7 +466,7 @@ return result
 <p><pre>
 // replace this code with your solution that uses lodash
 // hint: use your previous solution with _.find
-var result = data[3]
+var result = _.find(data, {age:_.min(_.pluck(data, &apos;age&apos;))})
 return result
 </pre></p>
 <p>The youngest person is Jane.</p>
