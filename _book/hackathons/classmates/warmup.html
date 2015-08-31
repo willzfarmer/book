@@ -5,7 +5,7 @@
         <!-- head:start -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Intro | book</title>
+        <title>Warmup | book</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.2.0">
@@ -37,10 +37,10 @@
         
     
     
-    <link rel="next" href="../../learning/intro/q-big-data.html" />
+    <link rel="next" href="../../hackathons/classmates/analysis.html" />
     
     
-    <link rel="prev" href="../../learning/index.html" />
+    <link rel="prev" href="../../hackathons/classmates/data.html" />
     
 
         <!-- head:end -->
@@ -48,7 +48,7 @@
     <body>
         <!-- body:start -->
         
-    <div class="book" data-level="1.1" data-basepath="../.." data-revision="Mon Aug 31 2015 16:09:23 GMT-0600 (MDT)">
+    <div class="book" data-level="2.2.2" data-basepath="../.." data-revision="Mon Aug 31 2015 16:09:23 GMT-0600 (MDT)">
     
 
 <div class="book-summary">
@@ -94,7 +94,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="1.1" data-path="learning/intro/index.html">
+        <li class="chapter " data-level="1.1" data-path="learning/intro/index.html">
             
                 
                     <a href="../../learning/intro/index.html">
@@ -329,7 +329,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.2.2" data-path="hackathons/classmates/warmup.html">
+        <li class="chapter active" data-level="2.2.2" data-path="hackathons/classmates/warmup.html">
             
                 
                     <a href="../../hackathons/classmates/warmup.html">
@@ -489,13 +489,70 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="learning-challenge-intro">Learning Challenge: Intro</h1>
-<p>This introductory learning challenge has three questions.</p>
-<ul>
-<li>Q: What is big data? (Team)</li>
-<li>Q: Which programming language is the top favorite among the students in our class? (Team)</li>
-<li>Q: What programming languages have the most packages? (Individual)</li>
-</ul>
+                        <h1 id="warmup">Warmup</h1>
+<p>As warmup, let&apos;s being with some simple questions.</p>
+<p>The comments data is imported as <code>data.comments</code>.</p>
+<h2 id="how-many-people-have-submitted-comments">How many people have submitted comments?</h2>
+<p><pre>
+<span class="comment">// TODO: write code to answer this question</span>
+<span class="keyword">return</span> <span class="number">25</span>
+</pre></p>
+<p>There are 25 submissions.</p>
+<h2 id="who-is-the-first-person-submitting-a-comment">Who is the first person submitting a comment?</h2>
+<p>We can get the data of the first comment by</p>
+<p><pre>
+<span class="comment">// TODO: use lodash&apos;s method instead of direct array access via [0]</span>
+<span class="keyword">return</span> data.comments[<span class="number">0</span>]
+</pre></p>
+<p>The result is</p>
+<pre>{
+ &quot;url&quot;: &quot;https://api.github.com/repos/bigdatahci2015/forum/issues/comments/133203904&quot;,
+ &quot;html_url&quot;: &quot;https://github.com/bigdatahci2015/forum/issues/1#issuecomment-133203904&quot;,
+ &quot;issue_url&quot;: &quot;https://api.github.com/repos/bigdatahci2015/forum/issues/1&quot;,
+ &quot;id&quot;: 133203904,
+ &quot;user&quot;: {
+  &quot;login&quot;: &quot;willzfarmer&quot;,
+  &quot;id&quot;: 546524,
+  &quot;avatar_url&quot;: &quot;https://avatars.githubusercontent.com/u/546524?v=3&quot;,
+  &quot;gravatar_id&quot;: &quot;&quot;,
+  &quot;url&quot;: &quot;https://api.github.com/users/willzfarmer&quot;,
+  &quot;html_url&quot;: &quot;https://github.com/willzfarmer&quot;,
+  &quot;followers_url&quot;: &quot;https://api.github.com/users/willzfarmer/followers&quot;,
+  &quot;following_url&quot;: &quot;https://api.github.com/users/willzfarmer/following{/other_user}&quot;,
+  &quot;gists_url&quot;: &quot;https://api.github.com/users/willzfarmer/gists{/gist_id}&quot;,
+  &quot;starred_url&quot;: &quot;https://api.github.com/users/willzfarmer/starred{/owner}{/repo}&quot;,
+  &quot;subscriptions_url&quot;: &quot;https://api.github.com/users/willzfarmer/subscriptions&quot;,
+  &quot;organizations_url&quot;: &quot;https://api.github.com/users/willzfarmer/orgs&quot;,
+  &quot;repos_url&quot;: &quot;https://api.github.com/users/willzfarmer/repos&quot;,
+  &quot;events_url&quot;: &quot;https://api.github.com/users/willzfarmer/events{/privacy}&quot;,
+  &quot;received_events_url&quot;: &quot;https://api.github.com/users/willzfarmer/received_events&quot;,
+  &quot;type&quot;: &quot;User&quot;,
+  &quot;site_admin&quot;: false
+ },
+ &quot;created_at&quot;: &quot;2015-08-20T22:39:50Z&quot;,
+ &quot;updated_at&quot;: &quot;2015-08-20T22:39:50Z&quot;,
+ &quot;body&quot;: &quot;Name: William Farmer\r\nMajor: Applied Math w/ Minor in Computer Science\r\nFavorite Programming Language: Python\r\nFavorite Food: Sushi&quot;
+}</pre>
+
+<p>The person&apos;s name is willzfarmer.</p>
+<h2 id="what-is-willzfarmer-s-favorite-food">What is willzfarmer&apos;s favorite food?</h2>
+<p>We will need to parse the comment to retrieve this data.</p>
+<p>The comment text is</p>
+<pre>&quot;Name: William Farmer\r\nMajor: Applied Math w/ Minor in Computer Science\r\nFavorite Programming Language: Python\r\nFavorite Food: Sushi&quot;</pre>
+
+<p>The code to retrieve the data about the favorite food is (hint: use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split" target="_blank">split()</a>).</p>
+<p><pre>
+<span class="keyword">var</span> text = _.first(data.comments).body
+console.log(text)
+console.log(text.split(<span class="string">&apos;\n&apos;</span>))
+
+<span class="comment">// TODO: add code to process text to get the person&apos;s favorite food</span>
+
+<span class="keyword">return</span> <span class="string">&apos;Sushi&apos;</span>
+</pre><div class="console"><pre>console&gt; &quot;Name: William Farmer\r\nMajor: Applied Math w/ Minor in Computer Science\r\nFavorite Programming Language: Python\r\nFavorite Food: Sushi&quot;
+console&gt; [&quot;Name: William Farmer\r&quot;,&quot;Major: Applied Math w/ Minor in Computer Science\r&quot;,&quot;Favorite Programming Language: Python\r&quot;,&quot;Favorite Food: Sushi&quot;]
+</pre></div></p>
+<p>So, willzfarmer&apos;s favorite food is Sushi.</p>
 
                     
                     </section>
@@ -506,10 +563,10 @@
         </div>
 
         
-        <a href="../../learning/index.html" class="navigation navigation-prev " aria-label="Previous page: Learning"><i class="fa fa-angle-left"></i></a>
+        <a href="../../hackathons/classmates/data.html" class="navigation navigation-prev " aria-label="Previous page: Data"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../learning/intro/q-big-data.html" class="navigation navigation-next " aria-label="Next page: Q. Big data"><i class="fa fa-angle-right"></i></a>
+        <a href="../../hackathons/classmates/analysis.html" class="navigation navigation-next " aria-label="Next page: Analysis"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
