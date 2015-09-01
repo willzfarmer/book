@@ -48,7 +48,7 @@
     <body>
         <!-- body:start -->
         
-    <div class="book" data-level="2.2.3" data-basepath="../.." data-revision="Mon Aug 31 2015 16:09:23 GMT-0600 (MDT)">
+    <div class="book" data-level="2.2.3" data-basepath="../.." data-revision="Mon Aug 31 2015 17:58:14 GMT-0600 (MDT)">
     
 
 <div class="book-summary">
@@ -494,24 +494,87 @@
 more challenges analyses.</p>
 <h2 id="how-many-students-like-sushi-as-their-favorite-food">How many students like sushi as their favorite food?</h2>
 <p><pre>
-<span class="keyword">return</span> <span class="string">&quot;[answer]&quot;</span>
+<span class="keyword">return</span> _.size(_.groupBy(_.map(_.pluck(data.comments, <span class="string">&apos;body&apos;</span>), <span class="keyword">function</span>(str) {
+    <span class="keyword">var</span> bodyArray = str.split(<span class="string">&apos;\n&apos;</span>);
+    <span class="keyword">var</span> n = _.size(bodyArray) - <span class="number">1</span>
+    <span class="keyword">if</span> (bodyArray[n] != <span class="string">&quot;&quot;</span>){
+        <span class="keyword">var</span> retval = bodyArray[n];
+    } <span class="keyword">else</span> {
+        <span class="keyword">var</span> retval = bodyArray[n - <span class="number">1</span>];
+    }
+    <span class="keyword">return</span> _.last(retval.toLowerCase().split(<span class="string">&apos;:&apos;</span>)).match(/[a-z][a-z ]*/)[<span class="number">0</span>];
+}), <span class="keyword">function</span>(str) {
+    <span class="keyword">return</span> str;
+})[<span class="string">&apos;sushi&apos;</span>]);
 </pre></p>
-<p>The answer is [answer].</p>
+<p>The answer is 3.</p>
 <h2 id="who-are-the-students-liking-python-the-most">Who are the students liking Python the most?</h2>
 <p><pre>
-<span class="keyword">return</span> <span class="string">&quot;[answer]&quot;</span>
+<span class="keyword">return</span> _.map(
+    _.groupBy(
+        _.map(data.comments, <span class="keyword">function</span>(obj) {
+            <span class="keyword">return</span> [obj.user.login,
+                obj.body.split(<span class="string">&apos;\n&apos;</span>)[<span class="number">2</span>].split(<span class="string">&apos;:&apos;</span>)[<span class="number">1</span>].toLowerCase().match(/[a-z]+/)[<span class="number">0</span>]];
+        }), <span class="keyword">function</span>(arr) { <span class="keyword">return</span> arr[<span class="number">1</span>]; })[<span class="string">&apos;python&apos;</span>], <span class="keyword">function</span>(arr) { <span class="keyword">return</span> arr[<span class="number">0</span>]; });
 </pre></p>
-<p>Their names are [answer].</p>
+<p>Their names are <pre>[
+ &quot;willzfarmer&quot;,
+ &quot;hswitte&quot;,
+ &quot;ZachLamb&quot;,
+ &quot;zhya215&quot;,
+ &quot;jocr1627&quot;,
+ &quot;94kazakov&quot;,
+ &quot;calebhsu&quot;,
+ &quot;kjblakemore&quot;,
+ &quot;SankethSukumarShetty&quot;,
+ &quot;AndreyShprengel&quot;
+]</pre>.</p>
 <h2 id="are-there-more-javascript-lovers-or-java-lovers">Are there more Javascript lovers or Java lovers?</h2>
 <p><pre>
-<span class="keyword">return</span> <span class="string">&quot;[answer]&quot;</span>
+<span class="keyword">var</span> languages =
+    _.groupBy(
+        _.map(
+            data.comments, <span class="keyword">function</span>(obj) {
+                <span class="keyword">return</span> [obj.user.login,
+                    obj.body.split(<span class="string">&apos;\n&apos;</span>)[<span class="number">2</span>].split(<span class="string">&apos;:&apos;</span>)[<span class="number">1</span>].toLowerCase().match(/[a-z]+/)[<span class="number">0</span>]];
+            }),
+     <span class="keyword">function</span>(arr) {
+         <span class="keyword">return</span> arr[<span class="number">1</span>];
+     });
+
+<span class="keyword">var</span> java = _.size(languages[<span class="string">&apos;java&apos;</span>]);
+<span class="keyword">var</span> javascript = _.size(languages[<span class="string">&apos;javascript&apos;</span>]);
+
+<span class="keyword">if</span> (java &gt; javascript) {
+    <span class="keyword">return</span> <span class="string">&quot;Java&quot;</span>;
+} <span class="keyword">else</span> <span class="keyword">if</span> (javascript &gt; java) {
+    <span class="keyword">return</span> <span class="string">&quot;Javascript&quot;</span>;
+} <span class="keyword">else</span> {
+    <span class="keyword">return</span> <span class="string">&quot;Equal&quot;</span>;
+}
 </pre></p>
-<p>The answer is [answer].</p>
+<p>The answer is Java.</p>
 <h2 id="who-like-the-same-food-as-kjblakemore">Who like the same food as <code>kjblakemore</code>?</h2>
 <p><pre>
-<span class="keyword">return</span> <span class="string">&quot;[answer]&quot;</span>
+<span class="keyword">var</span> foodArr =
+    _.map(data.comments, <span class="keyword">function</span>(obj) {
+        <span class="keyword">return</span> [obj.user.login,
+                obj.body.toLowerCase().match(/food.*/)[<span class="number">0</span>].match(/[a-z][a-z !,]*$/)[<span class="number">0</span>]
+            ];
+    });
+
+<span class="keyword">var</span> foods = {};
+<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; foodArr.length; i++) {
+    foods[foodArr[i][<span class="number">0</span>]] = foodArr[i][<span class="number">1</span>];
+}
+
+<span class="keyword">return</span> _.map(_.groupBy(foodArr, <span class="keyword">function</span>(tup) {
+    <span class="keyword">return</span> tup[<span class="number">1</span>];
+})[foods[<span class="string">&apos;kjblakemore&apos;</span>]], <span class="keyword">function</span>(tup) { <span class="keyword">return</span> tup[<span class="number">0</span>]; });
 </pre></p>
-<p>Their names are [answer].</p>
+<p>Their names are <pre>[
+ &quot;kjblakemore&quot;
+]</pre>.</p>
 
                     
                     </section>
