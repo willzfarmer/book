@@ -48,7 +48,7 @@
     <body>
         <!-- body:start -->
         
-    <div class="book" data-level="2.2.2" data-basepath="../.." data-revision="Mon Aug 31 2015 16:09:23 GMT-0600 (MDT)">
+    <div class="book" data-level="2.2.2" data-basepath="../.." data-revision="Mon Aug 31 2015 17:58:14 GMT-0600 (MDT)">
     
 
 <div class="book-summary">
@@ -494,15 +494,13 @@
 <p>The comments data is imported as <code>data.comments</code>.</p>
 <h2 id="how-many-people-have-submitted-comments">How many people have submitted comments?</h2>
 <p><pre>
-<span class="comment">// TODO: write code to answer this question</span>
-<span class="keyword">return</span> <span class="number">25</span>
+<span class="keyword">return</span> _.size(data.comments);
 </pre></p>
-<p>There are 25 submissions.</p>
+<p>There are 26 submissions.</p>
 <h2 id="who-is-the-first-person-submitting-a-comment">Who is the first person submitting a comment?</h2>
 <p>We can get the data of the first comment by</p>
 <p><pre>
-<span class="comment">// TODO: use lodash&apos;s method instead of direct array access via [0]</span>
-<span class="keyword">return</span> data.comments[<span class="number">0</span>]
+<span class="keyword">return</span> _.get(data.comments, <span class="number">0</span>)
 </pre></p>
 <p>The result is</p>
 <pre>{
@@ -542,16 +540,10 @@
 
 <p>The code to retrieve the data about the favorite food is (hint: use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split" target="_blank">split()</a>).</p>
 <p><pre>
-<span class="keyword">var</span> text = _.first(data.comments).body
-console.log(text)
-console.log(text.split(<span class="string">&apos;\n&apos;</span>))
+<span class="keyword">var</span> text = _.last(_.last(_.first(data.comments).body.split(<span class="string">&apos;\n&apos;</span>)).split(<span class="string">&apos; &apos;</span>))
 
-<span class="comment">// TODO: add code to process text to get the person&apos;s favorite food</span>
-
-<span class="keyword">return</span> <span class="string">&apos;Sushi&apos;</span>
-</pre><div class="console"><pre>console&gt; &quot;Name: William Farmer\r\nMajor: Applied Math w/ Minor in Computer Science\r\nFavorite Programming Language: Python\r\nFavorite Food: Sushi&quot;
-console&gt; [&quot;Name: William Farmer\r&quot;,&quot;Major: Applied Math w/ Minor in Computer Science\r&quot;,&quot;Favorite Programming Language: Python\r&quot;,&quot;Favorite Food: Sushi&quot;]
-</pre></div></p>
+<span class="keyword">return</span> text
+</pre></p>
 <p>So, willzfarmer&apos;s favorite food is Sushi.</p>
 
                     
