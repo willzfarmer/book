@@ -6,7 +6,7 @@ As a class, we brainstormed and came up with a long list of further questions we
 on the "self-introduction" data. Out of these questions, our team chose to tackle on
 the following:
 
-# Who wrote the most for thier comment
+# Who wrote the most for their comment
 
 {% lodash %}
 return _.pluck(_.sortBy(data.comments, function(comment){
