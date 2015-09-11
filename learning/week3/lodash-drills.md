@@ -74,7 +74,12 @@ What names begin with the letter J?
 
 {% solution %}
 
-var result = 'not done'
+var result = _.chain(data)
+                .filter(function(obj) {
+                    return (obj["name"][0] == 'J');
+                }).map(function(obj) {
+                    return obj["name"];
+                });
 return result
 
 {% endlodashexercise %}
@@ -96,7 +101,9 @@ How many Johns?
 3
 
 {% solution %}
-var result = 'not done'
+var result = _.filter(data, function(obj) {
+                    return (obj["name"] == 'John');
+                }).length;
 return result
 
 {% endlodashexercise %}
@@ -119,7 +126,10 @@ What are all the first names?
 ["John","Mary","Peter","Ben"]
 
 {% solution %}
-var result = 'not done'
+var result = _.chain(data)
+                .map(function(obj) {
+                    return obj["name"].split(" ")[0];
+                })
 return result
 
 {% endlodashexercise %}
@@ -145,7 +155,12 @@ What are the first names of Smith?
 ["John","Mary","Ben"]
 
 {% solution %}
-var result = 'not done'
+var result = _.chain(data)
+                .filter(function(obj) {
+                    return (obj["name"].split(" ")[1] == "Smith");
+                }).map(function(obj) {
+                    return obj["name"].split(" ")[0];
+                });
 return result
 {% endlodashexercise %}
 
@@ -170,7 +185,11 @@ Change the format to lastname, firstname
 [{name: 'Smith, John'}, {name: 'Kay, Mary'}, {name: 'Pan, Peter'}]
 
 {% solution %}
-var result = 'not done'
+var result = _.chain(data)
+                .map(function(obj) {
+                    var namearr = obj["name"].split(" ");
+                    return {"name": namearr[1] + ', ' + namearr[0]};
+                })
 return result
 {% endlodashexercise %}
 
@@ -192,7 +211,9 @@ How many women?
 
 {% solution %}
 
-var result = 'not done'
+var result = _.filter(data, function(obj) {
+                    return (obj["gender"] == "f");
+                }).length;
 return result
 
 {% endlodashexercise %}
@@ -219,7 +240,10 @@ How many men whose last name is Smith?
 
 {% solution %}
 
-var result = 'not done'
+var result = _.filter(data, function(obj) {
+                    return ((obj["gender"] == "m")
+                                && (obj["name"].split(" ")[1] == "Smith"));
+                }).length;
 return result
 
 {% endlodashexercise %}
@@ -244,7 +268,13 @@ true
 
 {% solution %}
 
-var result = 'not done'
+var men = _.filter(data, function(obj) {
+                    return (obj["gender"] == "m");
+                }).length;
+var women = _.filter(data, function(obj) {
+                    return (obj["gender"] == "f");
+                }).length;
+var result = (men > women);
 return result
 
 {% endlodashexercise %}
@@ -271,8 +301,11 @@ What is Peter Pan's gender?
 
 {% solution %}
 
-var result = 'not done'
-return result
+var result = _.chain(data)
+                .filter(function(obj) { return obj["name"] == "Peter Pan"; })
+                .map(function(obj) { return obj["gender"]; })
+                .value();
+return result[0];
 
 {% endlodashexercise %}
 
@@ -296,8 +329,11 @@ What is the oldest age?
 
 {% solution %}
 
-var result = 'not done'
-return result
+var result = _.chain(data)
+                .map(function(obj) { return obj["age"]; })
+                .sort()
+                .value();
+return result[result.length - 1];
 
 {% endlodashexercise %}
 
@@ -323,7 +359,12 @@ true
 {% solution %}
 
 // use _.all
-var result = 'not done'
+var result = _.chain(data)
+                .map(function(obj) { return (obj["age"] < 60); })
+                .reduce(function(prev, next, k) {
+                    return (prev && next);
+                }, true)
+                .value();
 return result
 
 {% endlodashexercise %}
@@ -348,7 +389,12 @@ true
 {% solution %}
 
 // use _.some
-var result = 'not done'
+var result = _.chain(data)
+                .map(function(obj) { return (obj["age"] < 18); })
+                .reduce(function(prev, next, k) {
+                    return (prev || next);
+                }, false)
+                .value();
 return result
 
 {% endlodashexercise %}
@@ -375,7 +421,13 @@ How many people whose favorites include food?
 
 {% solution %}
 
-var result = 'not done'
+var result = _.chain(data)
+                .filter(function(obj) {
+                    if (obj["favorites"].indexOf('food') >= 0) {
+                        return true;
+                    }
+                }).value()
+                .length;
 return result
 
 {% endlodashexercise %}
@@ -404,7 +456,15 @@ Who are over 40 and love travel?
 
 {% solution %}
 
-var result = 'not done'
+var result = _.chain(data)
+                .filter(function(obj) {
+                    if ((obj["favorites"].indexOf('travel') >= 0) &&
+                            (obj["age"] > 40)) {
+                        return true;
+                    }
+                }).map(function(obj) {
+                    return obj["name"];
+                }).value();
 return result
 
 {% endlodashexercise %}
@@ -432,7 +492,17 @@ Who is the oldest person loving food?
 
 {% solution %}
 
-var result = 'not done'
+var result = _.chain(data)
+                .filter(function(obj) {
+                    if (obj["favorites"].indexOf('food') >= 0) {
+                        return true;
+                    }
+                }).sortBy(function(obj) {
+                    return obj["age"];
+                }).takeRight()
+                .map(function(obj) {
+                    return obj["name"];
+                }).value()[0];
 return result
 
 {% endlodashexercise %}
@@ -468,7 +538,11 @@ What are all the unique favorites?
 
 // hint: use _.pluck, _.uniq, _.flatten in some order
 
-var result = 'not done'
+var result = _.chain(data)
+                .map(function(obj) { return obj["favorites"]; })
+                .flatten()
+                .uniq()
+                .value();
 return result
 
 {% endlodashexercise %}
@@ -499,7 +573,11 @@ What are all the unique last names?
 
 {% solution %}
 
-var result = 'not done'
+var result = _.chain(data)
+                .map(function(obj) {
+                    return obj["name"].split(" ")[1];
+                }).uniq()
+                .value();
 return result
 
 {% endlodashexercise %}

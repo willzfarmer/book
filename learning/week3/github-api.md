@@ -56,46 +56,68 @@ Now it's your turn to answer the following questions using the real data.
 ### How many issues have been created to date in our class's forum repository?
 
 {% githubapi %}
-// enter the URL to access the Github API to get the data for this question
+https://api.github.com/repos/bigdatahci2015/forum/issues
 {% endgithubapi %}
 
 {% lodash %}
-// add lodash code to process the data and generate the answer
-return 'something'
+return data.length;
 {% endlodash %}
+
+{{ result }}
 
 ### What are the titles of these issues?
 
-(answer)
+{% lodash %}
+return _.pluck(data, 'title');
+{% endlodash %}
+
+{{ result }}
 
 ### How many repository have been created to date for our class?
 
 Our class's Github organization is [bigdatahci2015](https://github.com/bigdatahci2015/).
 
 {% githubapi %}
-// enter the URL to access the Github API to get the data for this question
+https://api.github.com/orgs/bigdatahci2015/repos
 {% endgithubapi %}
 
 {% lodash %}
-// add lodash code to process the data and generate the answer
-return 'something'
+return data.length;
 {% endlodash %}
+
+{{ result }}
 
 ### What are the fork counts of our class's repositories?
 
-(answer)
+{% lodash %}
+return _.chain(data)
+            .map(function(obj) {
+                return [obj["name"], obj["forks_count"]];
+            })
+{% endlodash %}
+
+{{ result | json }}
 
 ### How many public repositories does the user `doubleshow` have?
 
 {% githubapi %}
-// enter the URL to access the Github API to get the data for this question
+https://api.github.com/users/doubleshow/repos
 {% endgithubapi %}
 
 {% lodash %}
-// add lodash code to process the data and generate the answer
-return 'something'
+return data.length;
 {% endlodash %}
+
+{{ result }}
 
 ### How many public gists does the user `doubleshow` have?
 
-(answer)
+{% githubapi %}
+https://api.github.com/users/doubleshow
+{% endgithubapi %}
+
+{% lodash %}
+return data["public_gists"];
+{% endlodash %}
+
+{{ result }}

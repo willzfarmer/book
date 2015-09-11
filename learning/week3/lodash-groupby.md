@@ -141,7 +141,12 @@ Who is the first person in each age group?
 
 {% solution %}
 
-var result = 'not done'
+var result = _.chain(data)
+                .groupBy(function(obj) {
+                    return Math.floor(obj.age / 10)
+                }).mapValues(function(obj) {
+                    return obj[0]["name"];
+                }).value();
 return result
 
 {% endlodashexercise %}
@@ -212,7 +217,10 @@ Group people by their last name
 
 {% solution %}
 
-var result = 'not done'
+var result = _.chain(data)
+                .groupBy(function(obj) {
+                    return obj.name.split(" ")[1];
+                }).value();
 return result
 
 {% endlodashexercise %}
@@ -248,7 +256,12 @@ How many people are in each last-name group?
 
 {% solution %}
 
-var result = 'not done'
+var result = _.chain(data)
+                .groupBy(function(obj) {
+                    return obj.name.split(" ")[1];
+                }).mapValues(function(obj) {
+                    return obj.length;
+                }).value();
 return result
 
 {% endlodashexercise %}
@@ -286,7 +299,12 @@ Who is the first person in each last-name group?
 
 {% solution %}
 
-var result = 'not done'
+var result = _.chain(data)
+                .groupBy(function(obj) {
+                    return obj.name.split(" ")[1];
+                }).mapValues(function(obj) {
+                    return obj[0].name;
+                }).value();
 return result
 
 {% endlodashexercise %}
@@ -392,7 +410,14 @@ What are all person-favorite pairs?
 
 // hint: use nested _.map, then  _.flatten
 
-var result = 'not done'
+var result = _.chain(data)
+                .map(function(obj) {
+                    return _.map(obj.favorites, function(fav) {
+                        return new Object({"name": obj.name,
+                                             "favorite": fav});
+                    })
+                }).flatten()
+                .value();
 return result
 
 {% endlodashexercise %}
@@ -498,7 +523,17 @@ What are all age-favorite pairs (in ascending order)?
 
 // hint: use nested _.map, then  _.flatten
 
-var result = 'not done'
+var result = _.chain(data)
+                .map(function(obj) {
+                    return _.map(obj.favorites, function(fav) {
+                        return new Object({"age": obj.age,
+                                             "favorite": fav});
+                    })
+                }).flatten()
+                .sortBy(function(obj) {
+                    return obj.age;
+                })
+                .value();
 return result
 
 {% endlodashexercise %}
@@ -618,8 +653,17 @@ Group people by their favorites.
 
 {% solution %}
 
-// hint: first, apply _.groupBy to the name-favovrite pairs computed earlier
-var result = 'not done'
+var result = _.chain(data)
+                .map(function(obj) {
+                    return _.map(obj.favorites, function(fav) {
+                        return new Object({"name": obj.name,
+                                             "favorite": fav});
+                    })
+                }).flatten()
+                .groupBy(function(obj) {
+                    return obj.favorite;
+                }).value();
+
 return result
 
 {% endlodashexercise %}
@@ -687,7 +731,21 @@ What are the names of the people in these 'favorite' groups?
 {% solution %}
 
 
-var result = 'not done'
+var result = _.chain(data)
+                .map(function(obj) {
+                    return _.map(obj.favorites, function(fav) {
+                        return new Object({"name": obj.name,
+                                             "favorite": fav});
+                    })
+                }).flatten()
+                .groupBy(function(obj) {
+                    return obj.favorite;
+                }).mapValues(function(arr) {
+                    return _.map(arr, function(obj) {
+                        return obj.name;
+                    })
+                }).value();
+
 return result
 
 {% endlodashexercise %}
@@ -725,7 +783,18 @@ What are the sizes of these 'favorite' groups?
 
 {% solution %}
 
-var result = 'not done'
+var result = _.chain(data)
+                .map(function(obj) {
+                    return _.map(obj.favorites, function(fav) {
+                        return new Object({"name": obj.name,
+                                             "favorite": fav});
+                    })
+                }).flatten()
+                .groupBy(function(obj) {
+                    return obj.favorite;
+                }).mapValues(function(arr) {
+                    return arr.length;
+                }).value();
 return result
 
 {% endlodashexercise %}
@@ -828,7 +897,10 @@ Group people by city
 }
 {% solution %}
 
-var result = 'not done'
+var result = _.chain(data)
+                .groupBy(function(obj) {
+                    return obj.city;
+                }).value();
 return result
 
 {% endlodashexercise %}
@@ -863,7 +935,12 @@ Group people by city and count how many people in each city
 
 {% solution %}
 
-var result = 'not done'
+var result = _.chain(data)
+                .groupBy(function(obj) {
+                    return obj.city;
+                }).mapValues(function(arr) {
+                    return arr.length;
+                }).value()
 return result
 
 {% endlodashexercise %}
@@ -897,7 +974,19 @@ What is the oldest age in each city?
 
 {% solution %}
 
-var result = 'not done'
+var result = _.chain(data)
+                .groupBy(function(obj) {
+                    return obj.city;
+                }).mapValues(function(arr) {
+                    return _.reduce(arr, function(prev, next, i) {
+                        var age = next.age;
+                        if (prev < age) {
+                            return age;
+                        } else {
+                            return prev;
+                        }
+                    }).age;
+                }).value()
 return result
 
 {% endlodashexercise %}
@@ -931,7 +1020,14 @@ How many Smith's are in each city?
 
 {% solution %}
 
-var result = 'not done'
+var result = _.chain(data)
+                .groupBy(function(obj) {
+                    return obj.city;
+                }).mapValues(function(arr) {
+                    return _.filter(arr, function(obj) {
+                        return (obj.name.split(" ")[1] == "Smith");
+                    }).length;
+                }).value()
 return result
 
 {% endlodashexercise %}
