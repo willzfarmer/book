@@ -17,32 +17,33 @@ including the controls, widgets ...etc.
 
 # How big the deal Tableau really is?
 
-(write your answer based on the statistics you can find online)
 
-# (Question 1)
-
-![screenshot](screenshot.png)
-
-(write your explanation for the reader as to where to look at this chart in order
-    to see the answer)
-
-# (Question 2)
+# Who wrote the most for their comment
 
 ![screenshot](screenshot.png)
 
 (write your explanation for the reader as to where to look at this chart in order
     to see the answer)
 
-# (Question 3)
+# Who uses the most punctuation?
 
 ![screenshot](screenshot.png)
 
 (write your explanation for the reader as to where to look at this chart in order
     to see the answer)
 
-# (Question 4)
+# When did people post comments?
 
 ![screenshot](screenshot.png)
 
 (write your explanation for the reader as to where to look at this chart in order
     to see the answer)
+
+# Who has the oldest account?
+
+![screenshot](screenshot.png)
+
+(write your explanation for the reader as to where to look at this chart in order
+    to see the answer)
+
+# Who has updated their comment?

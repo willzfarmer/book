@@ -5,11 +5,18 @@
 
 Next, complete the following warmup exercises as a team.
 
+{% lodash %}
+console.log(data);
+{% endlodash %}
+
 ## How many unique subject codes?
 
 {% lodash %}
-// TODO: replace with code that computes the actual result
-return 113
+return _.chain(data)
+        .pluck("Subject")
+        .uniq()
+        .value()
+        .length;
 {% endlodash %}
 
 They are {{ result }} unique subject codes.
@@ -17,8 +24,11 @@ They are {{ result }} unique subject codes.
 ## How many computer science (CSCI) courses?
 
 {% lodash %}
-// TODO: replace with code that computes the actual result
-return 63
+return _.chain(data)
+        .pluck("CrsPBADept")
+        .filter(function(s) { return (s == "CSCI"); })
+        .value()
+        .length;
 {% endlodash %}
 
 They are {{ result }} computer science courses.
@@ -26,8 +36,11 @@ They are {{ result }} computer science courses.
 ## What is the distribution of the courses across subject codes?
 
 {% lodash %}
-// TODO: replace with code that computes the actual result
-return {"HIST": 78,"HONR": 20,"HUMN": 17,"IAFS": 20,"IPHY": 134}
+return _.chain(data)
+        .pluck("Subject")
+        .groupBy(function(s) { return s; })
+        .mapValues(function(arr) { return arr.length; })
+        .value();
 {% endlodash %}
 
 <table>
@@ -42,14 +55,12 @@ return {"HIST": 78,"HONR": 20,"HUMN": 17,"IAFS": 20,"IPHY": 134}
 ## What subset of these subject codes have more than 100 courses?
 
 {% lodash %}
-// TODO: replace with code that computes the actual result
-var grps = _.groupBy(data, 'Subject')
-var ret = _.pick(_.mapValues(grps, function(d){
-    return d.length
-}), function(x){
-    return x > 100
-})
-return {"IPHY": 134,"MATH": 232,"MCDB": 117,"PHIL": 160,"PSCI": 117}
+return _.chain(data)
+        .pluck("Subject")
+        .groupBy(function(s) { return s; })
+        .mapValues(function(arr) { return arr.length; })
+        .pick(function(x) { return (x > 100); })
+        .value();
 {% endlodash %}
 
 <table>
@@ -64,8 +75,14 @@ return {"IPHY": 134,"MATH": 232,"MCDB": 117,"PHIL": 160,"PSCI": 117}
 ## What subset of these subject codes have more than 5000 total enrollments?
 
 {% lodash %}
-// TODO: replace with code that computes the actual result
-return {"IPHY": 5507,"MATH": 8725,"PHIL": 5672,"PHYS": 8099,"PSCI": 5491}
+return _.chain(data)
+        .groupBy(function(obj) { return obj.Subject; })
+        .mapValues(function(arr) {
+            return _.chain(arr)
+                    .map(function(obj) { return obj.N.ENROLL; })
+                    .reduce(function(prev, next) { return prev + next; })
+        }).pick(function(x) { return (x > 5000); })
+        .value();
 {% endlodash %}
 
 <table>
@@ -80,8 +97,15 @@ return {"IPHY": 5507,"MATH": 8725,"PHIL": 5672,"PHYS": 8099,"PSCI": 5491}
 ## What are the course numbers of the courses Tom (PEI HSIU) Yeh taught?
 
 {% lodash %}
-// TODO: replace with code that computes the actual result
-return ['4830','4830']
+return _.chain(data)
+        .filter(function(obj) {
+            return _.reduce(obj.Instructors, function(prev, next, key) {
+                        return (prev || (next.name == "YEH, PEI HSIU"));
+                    }, false);
+        }).map(function(obj) {
+            return obj.Course;
+        }).uniq()
+        .value();
 {% endlodash %}
 
 They are {{result}}.
