@@ -17,33 +17,17 @@ including the controls, widgets ...etc.
 
 # How big the deal Tableau really is?
 
+Tableau is a big deal as evidenced by their 2014 to 2013 revenue jump: US$412,616,000 (2014) to
+US$ 232,440,000 (2013).
 
 # Who wrote the most for their comment
 
-![screenshot](screenshot.png)
-
-(write your explanation for the reader as to where to look at this chart in order
-    to see the answer)
-
-# Who uses the most punctuation?
-
-![screenshot](screenshot.png)
-
-(write your explanation for the reader as to where to look at this chart in order
-    to see the answer)
-
-# When did people post comments?
-
-![screenshot](screenshot.png)
-
-(write your explanation for the reader as to where to look at this chart in order
-    to see the answer)
+![screenshot](image.png)
 
 # Who has the oldest account?
 
-![screenshot](screenshot.png)
+![screenshot](image1.png)
 
-(write your explanation for the reader as to where to look at this chart in order
-    to see the answer)
+# How many people updated their comment?
 
-# Who has updated their comment?
+![screenshot](image2.png)
