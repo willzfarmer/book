@@ -5,10 +5,6 @@
 
 Next, complete the following warmup exercises as a team.
 
-{% lodash %}
-console.log(data);
-{% endlodash %}
-
 ## How many unique subject codes?
 
 {% lodash %}
