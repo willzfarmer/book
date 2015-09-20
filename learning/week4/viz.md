@@ -19,37 +19,17 @@ how to transform this JSON file into a format that can be fed into Tableau. As
 a junior and senior, you are expected to be able to look around the Internet
 to problem solve.
 
-# (Question 1)
+# What professors should be fired? by Will Farmer
 
-![screenshot](screenshot.png)
+If the professor has a rating less than two standard deviations away, he's not
+a good one.
 
-(write your explanation for the reader as to where to look at this chart in order
-    to see the answer)
+![screenshot](image.png)
 
-# (Question 2)
+# What is the average course rating by department? by Heather Witte
 
-![screenshot](screenshot.png)
+![screenshot](image1.png)
 
-(write your explanation for the reader as to where to look at this chart in order
-    to see the answer)
+# (Question 5) What should my major be if I want have a high gpa (AndreySHprengel)
 
-# (Question 3)
-
-![screenshot](screenshot.png)
-
-(write your explanation for the reader as to where to look at this chart in order
-    to see the answer)
-
-# (Question 4)
-
-![screenshot](screenshot.png)
-
-(write your explanation for the reader as to where to look at this chart in order
-    to see the answer)
-
-# (Question 5)
-
-![screenshot](screenshot.png)
-
-(write your explanation for the reader as to where to look at this chart in order
-    to see the answer)    
+![screenshot](image2.png)
