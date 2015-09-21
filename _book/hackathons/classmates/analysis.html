@@ -29,6 +29,10 @@
         
     
         
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/styles/default.min.css">
+        
+    
+        
         <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.css">
         
     
@@ -48,7 +52,7 @@
     <body>
         <!-- body:start -->
         
-    <div class="book" data-level="2.2.3" data-basepath="../.." data-revision="Sun Sep 20 2015 15:09:36 GMT-0600 (MDT)">
+    <div class="book" data-level="2.2.3" data-basepath="../.." data-revision="Mon Sep 21 2015 15:55:01 GMT-0600 (MDT)">
     
 
 <div class="book-summary">
@@ -379,6 +383,72 @@
             
         </li>
     
+        <li class="chapter " data-level="1.6" data-path="learning/week5/index.html">
+            
+                
+                    <a href="../../learning/week5/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.6.</b>
+                        
+                        Week 5
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="learning/week5/birdstrike-report.html">
+            
+                
+                    <a href="../../learning/week5/birdstrike-report.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.6.1.</b>
+                        
+                        Birdstrike Report
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="learning/week5/viz-steps.html">
+            
+                
+                    <a href="../../learning/week5/viz-steps.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.6.2.</b>
+                        
+                        Viz Intro
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="learning/week5/viz-drills.html">
+            
+                
+                    <a href="../../learning/week5/viz-drills.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.6.3.</b>
+                        
+                        Viz Drills
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
 
             </ul>
             
@@ -583,6 +653,42 @@
             
         </li>
     
+        <li class="chapter " data-level="2.4" data-path="hackathons/birdstrikes/index.html">
+            
+                
+                    <a href="../../hackathons/birdstrikes/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        Birdstrikes
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.4.1" data-path="hackathons/birdstrikes/report.html">
+            
+                
+                    <a href="../../hackathons/birdstrikes/report.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.1.</b>
+                        
+                        Report
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
 
             </ul>
             
@@ -697,30 +803,26 @@
 <p>After completing the warmup exercises, your task is to do four more slightly
 more challenges analyses.</p>
 <h2 id="how-many-students-like-sushi-as-their-favorite-food">How many students like sushi as their favorite food?</h2>
-<p><pre>
-<span class="keyword">return</span> _.size(_.groupBy(_.map(_.pluck(data.comments, <span class="string">&apos;body&apos;</span>), <span class="keyword">function</span>(str) {
-    <span class="keyword">var</span> bodyArray = str.split(<span class="string">&apos;\n&apos;</span>);
-    <span class="keyword">var</span> n = _.size(bodyArray) - <span class="number">1</span>
-    <span class="keyword">if</span> (bodyArray[n] != <span class="string">&quot;&quot;</span>){
-        <span class="keyword">var</span> retval = bodyArray[n];
-    } <span class="keyword">else</span> {
-        <span class="keyword">var</span> retval = bodyArray[n - <span class="number">1</span>];
+<p><pre><code>return _.size(_.groupBy(_.map(_.pluck(data.comments, &apos;body&apos;), function(str) {
+    var bodyArray = str.split(&apos;\n&apos;);
+    var n = _.size(bodyArray) - 1
+    if (bodyArray[n] != &quot;&quot;){
+        var retval = bodyArray[n];
+    } else {
+        var retval = bodyArray[n - 1];
     }
-    <span class="keyword">return</span> _.last(retval.toLowerCase().split(<span class="string">&apos;:&apos;</span>)).match(/[a-z][a-z ]*/)[<span class="number">0</span>];
-}), <span class="keyword">function</span>(str) {
-    <span class="keyword">return</span> str;
-})[<span class="string">&apos;sushi&apos;</span>]);
-</pre></p>
+    return _.last(retval.toLowerCase().split(&apos;:&apos;)).match(/[a-z][a-z ]*/)[0];
+}), function(str) {
+    return str;
+})[&apos;sushi&apos;]);</code></pre></p>
 <p>The answer is 3.</p>
 <h2 id="who-are-the-students-liking-python-the-most">Who are the students liking Python the most?</h2>
-<p><pre>
-<span class="keyword">return</span> _.map(
+<p><pre><code>return _.map(
     _.groupBy(
-        _.map(data.comments, <span class="keyword">function</span>(obj) {
-            <span class="keyword">return</span> [obj.user.login,
-                obj.body.split(<span class="string">&apos;\n&apos;</span>)[<span class="number">2</span>].split(<span class="string">&apos;:&apos;</span>)[<span class="number">1</span>].toLowerCase().match(/[a-z]+/)[<span class="number">0</span>]];
-        }), <span class="keyword">function</span>(arr) { <span class="keyword">return</span> arr[<span class="number">1</span>]; })[<span class="string">&apos;python&apos;</span>], <span class="keyword">function</span>(arr) { <span class="keyword">return</span> arr[<span class="number">0</span>]; });
-</pre></p>
+        _.map(data.comments, function(obj) {
+            return [obj.user.login,
+                obj.body.split(&apos;\n&apos;)[2].split(&apos;:&apos;)[1].toLowerCase().match(/[a-z]+/)[0]];
+        }), function(arr) { return arr[1]; })[&apos;python&apos;], function(arr) { return arr[0]; });</code></pre></p>
 <p>Their names are <pre style="font-size:11px;line-height:1;max-height:300px;">[
  &quot;willzfarmer&quot;,
  &quot;hswitte&quot;,
@@ -734,48 +836,44 @@ more challenges analyses.</p>
  &quot;AndreyShprengel&quot;
 ]</pre>.</p>
 <h2 id="are-there-more-javascript-lovers-or-java-lovers">Are there more Javascript lovers or Java lovers?</h2>
-<p><pre>
-<span class="keyword">var</span> languages =
+<p><pre><code>var languages =
     _.groupBy(
         _.map(
-            data.comments, <span class="keyword">function</span>(obj) {
-                <span class="keyword">return</span> [obj.user.login,
-                    obj.body.split(<span class="string">&apos;\n&apos;</span>)[<span class="number">2</span>].split(<span class="string">&apos;:&apos;</span>)[<span class="number">1</span>].toLowerCase().match(/[a-z]+/)[<span class="number">0</span>]];
+            data.comments, function(obj) {
+                return [obj.user.login,
+                    obj.body.split(&apos;\n&apos;)[2].split(&apos;:&apos;)[1].toLowerCase().match(/[a-z]+/)[0]];
             }),
-     <span class="keyword">function</span>(arr) {
-         <span class="keyword">return</span> arr[<span class="number">1</span>];
+     function(arr) {
+         return arr[1];
      });
 
-<span class="keyword">var</span> java = _.size(languages[<span class="string">&apos;java&apos;</span>]);
-<span class="keyword">var</span> javascript = _.size(languages[<span class="string">&apos;javascript&apos;</span>]);
+var java = _.size(languages[&apos;java&apos;]);
+var javascript = _.size(languages[&apos;javascript&apos;]);
 
-<span class="keyword">if</span> (java &gt; javascript) {
-    <span class="keyword">return</span> <span class="string">&quot;Java&quot;</span>;
-} <span class="keyword">else</span> <span class="keyword">if</span> (javascript &gt; java) {
-    <span class="keyword">return</span> <span class="string">&quot;Javascript&quot;</span>;
-} <span class="keyword">else</span> {
-    <span class="keyword">return</span> <span class="string">&quot;Equal&quot;</span>;
-}
-</pre></p>
+if (java &gt; javascript) {
+    return &quot;Java&quot;;
+} else if (javascript &gt; java) {
+    return &quot;Javascript&quot;;
+} else {
+    return &quot;Equal&quot;;
+}</code></pre></p>
 <p>The answer is Java.</p>
 <h2 id="who-like-the-same-food-as-kjblakemore">Who like the same food as <code>kjblakemore</code>?</h2>
-<p><pre>
-<span class="keyword">var</span> foodArr =
-    _.map(data.comments, <span class="keyword">function</span>(obj) {
-        <span class="keyword">return</span> [obj.user.login,
-                obj.body.toLowerCase().match(/food.*/)[<span class="number">0</span>].match(/[a-z][a-z !,]*$/)[<span class="number">0</span>]
+<p><pre><code>var foodArr =
+    _.map(data.comments, function(obj) {
+        return [obj.user.login,
+                obj.body.toLowerCase().match(/food.*/)[0].match(/[a-z][a-z !,]*$/)[0]
             ];
     });
 
-<span class="keyword">var</span> foods = {};
-<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; foodArr.length; i++) {
-    foods[foodArr[i][<span class="number">0</span>]] = foodArr[i][<span class="number">1</span>];
+var foods = {};
+for (var i = 0; i &lt; foodArr.length; i++) {
+    foods[foodArr[i][0]] = foodArr[i][1];
 }
 
-<span class="keyword">return</span> _.map(_.groupBy(foodArr, <span class="keyword">function</span>(tup) {
-    <span class="keyword">return</span> tup[<span class="number">1</span>];
-})[foods[<span class="string">&apos;kjblakemore&apos;</span>]], <span class="keyword">function</span>(tup) { <span class="keyword">return</span> tup[<span class="number">0</span>]; });
-</pre></p>
+return _.map(_.groupBy(foodArr, function(tup) {
+    return tup[1];
+})[foods[&apos;kjblakemore&apos;]], function(tup) { return tup[0]; });</code></pre></p>
 <p>Their names are <pre style="font-size:11px;line-height:1;max-height:300px;">[
  &quot;kjblakemore&quot;
 ]</pre>.</p>
@@ -799,6 +897,14 @@ more challenges analyses.</p>
 
         
 <script src="../../gitbook/app.js"></script>
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-bigdata/bigdata.js"></script>
+    
+
+    
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/highlight.min.js"></script>
+    
 
     
     <script src="../../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.js"></script>

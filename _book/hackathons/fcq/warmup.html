@@ -29,6 +29,10 @@
         
     
         
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/styles/default.min.css">
+        
+    
+        
         <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.css">
         
     
@@ -48,7 +52,7 @@
     <body>
         <!-- body:start -->
         
-    <div class="book" data-level="2.3.1" data-basepath="../.." data-revision="Sun Sep 20 2015 15:09:36 GMT-0600 (MDT)">
+    <div class="book" data-level="2.3.1" data-basepath="../.." data-revision="Mon Sep 21 2015 15:55:01 GMT-0600 (MDT)">
     
 
 <div class="book-summary">
@@ -379,6 +383,72 @@
             
         </li>
     
+        <li class="chapter " data-level="1.6" data-path="learning/week5/index.html">
+            
+                
+                    <a href="../../learning/week5/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.6.</b>
+                        
+                        Week 5
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="learning/week5/birdstrike-report.html">
+            
+                
+                    <a href="../../learning/week5/birdstrike-report.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.6.1.</b>
+                        
+                        Birdstrike Report
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="learning/week5/viz-steps.html">
+            
+                
+                    <a href="../../learning/week5/viz-steps.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.6.2.</b>
+                        
+                        Viz Intro
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="learning/week5/viz-drills.html">
+            
+                
+                    <a href="../../learning/week5/viz-drills.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.6.3.</b>
+                        
+                        Viz Drills
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
 
             </ul>
             
@@ -583,6 +653,42 @@
             
         </li>
     
+        <li class="chapter " data-level="2.4" data-path="hackathons/birdstrikes/index.html">
+            
+                
+                    <a href="../../hackathons/birdstrikes/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        Birdstrikes
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.4.1" data-path="hackathons/birdstrikes/report.html">
+            
+                
+                    <a href="../../hackathons/birdstrikes/report.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.1.</b>
+                        
+                        Report
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
 
             </ul>
             
@@ -697,31 +803,25 @@
 <h1 id="warmup">Warmup</h1>
 <p>Next, complete the following warmup exercises as a team.</p>
 <h2 id="how-many-unique-subject-codes">How many unique subject codes?</h2>
-<p><pre>
-<span class="keyword">return</span> _.chain(data)
-        .pluck(<span class="string">&quot;Subject&quot;</span>)
+<p><pre><code>return _.chain(data)
+        .pluck(&quot;Subject&quot;)
         .uniq()
         .value()
-        .length;
-</pre></p>
+        .length;</code></pre></p>
 <p>They are 113 unique subject codes.</p>
 <h2 id="how-many-computer-science-csci-courses">How many computer science (CSCI) courses?</h2>
-<p><pre>
-<span class="keyword">return</span> _.chain(data)
-        .pluck(<span class="string">&quot;CrsPBADept&quot;</span>)
-        .filter(<span class="keyword">function</span>(s) { <span class="keyword">return</span> (s == <span class="string">&quot;CSCI&quot;</span>); })
+<p><pre><code>return _.chain(data)
+        .pluck(&quot;CrsPBADept&quot;)
+        .filter(function(s) { return (s == &quot;CSCI&quot;); })
         .value()
-        .length;
-</pre></p>
+        .length;</code></pre></p>
 <p>They are 63 computer science courses.</p>
 <h2 id="what-is-the-distribution-of-the-courses-across-subject-codes">What is the distribution of the courses across subject codes?</h2>
-<p><pre>
-<span class="keyword">return</span> _.chain(data)
-        .pluck(<span class="string">&quot;Subject&quot;</span>)
-        .groupBy(<span class="keyword">function</span>(s) { <span class="keyword">return</span> s; })
-        .mapValues(<span class="keyword">function</span>(arr) { <span class="keyword">return</span> arr.length; })
-        .value();
-</pre></p>
+<p><pre><code>return _.chain(data)
+        .pluck(&quot;Subject&quot;)
+        .groupBy(function(s) { return s; })
+        .mapValues(function(arr) { return arr.length; })
+        .value();</code></pre></p>
 <table>
 
     <tr>
@@ -1292,14 +1392,12 @@
 </table>
 
 <h2 id="what-subset-of-these-subject-codes-have-more-than-100-courses">What subset of these subject codes have more than 100 courses?</h2>
-<p><pre>
-<span class="keyword">return</span> _.chain(data)
-        .pluck(<span class="string">&quot;Subject&quot;</span>)
-        .groupBy(<span class="keyword">function</span>(s) { <span class="keyword">return</span> s; })
-        .mapValues(<span class="keyword">function</span>(arr) { <span class="keyword">return</span> arr.length; })
-        .pick(<span class="keyword">function</span>(x) { <span class="keyword">return</span> (x &gt; <span class="number">100</span>); })
-        .value();
-</pre></p>
+<p><pre><code>return _.chain(data)
+        .pluck(&quot;Subject&quot;)
+        .groupBy(function(s) { return s; })
+        .mapValues(function(arr) { return arr.length; })
+        .pick(function(x) { return (x &gt; 100); })
+        .value();</code></pre></p>
 <table>
 
     <tr>
@@ -1375,16 +1473,14 @@
 </table>
 
 <h2 id="what-subset-of-these-subject-codes-have-more-than-5000-total-enrollments">What subset of these subject codes have more than 5000 total enrollments?</h2>
-<p><pre>
-<span class="keyword">return</span> _.chain(data)
-        .groupBy(<span class="keyword">function</span>(obj) { <span class="keyword">return</span> obj.Subject; })
-        .mapValues(<span class="keyword">function</span>(arr) {
-            <span class="keyword">return</span> _.chain(arr)
-                    .map(<span class="keyword">function</span>(obj) { <span class="keyword">return</span> obj.N.ENROLL; })
-                    .reduce(<span class="keyword">function</span>(prev, next) { <span class="keyword">return</span> prev + next; })
-        }).pick(<span class="keyword">function</span>(x) { <span class="keyword">return</span> (x &gt; <span class="number">5000</span>); })
-        .value();
-</pre></p>
+<p><pre><code>return _.chain(data)
+        .groupBy(function(obj) { return obj.Subject; })
+        .mapValues(function(arr) {
+            return _.chain(arr)
+                    .map(function(obj) { return obj.N.ENROLL; })
+                    .reduce(function(prev, next) { return prev + next; })
+        }).pick(function(x) { return (x &gt; 5000); })
+        .value();</code></pre></p>
 <table>
 
     <tr>
@@ -1440,17 +1536,15 @@
 </table>
 
 <h2 id="what-are-the-course-numbers-of-the-courses-tom-pei-hsiu-yeh-taught">What are the course numbers of the courses Tom (PEI HSIU) Yeh taught?</h2>
-<p><pre>
-<span class="keyword">return</span> _.chain(data)
-        .filter(<span class="keyword">function</span>(obj) {
-            <span class="keyword">return</span> _.reduce(obj.Instructors, <span class="keyword">function</span>(prev, next, key) {
-                        <span class="keyword">return</span> (prev || (next.name == <span class="string">&quot;YEH, PEI HSIU&quot;</span>));
-                    }, <span class="keyword">false</span>);
-        }).map(<span class="keyword">function</span>(obj) {
-            <span class="keyword">return</span> obj.Course;
+<p><pre><code>return _.chain(data)
+        .filter(function(obj) {
+            return _.reduce(obj.Instructors, function(prev, next, key) {
+                        return (prev || (next.name == &quot;YEH, PEI HSIU&quot;));
+                    }, false);
+        }).map(function(obj) {
+            return obj.Course;
         }).uniq()
-        .value();
-</pre></p>
+        .value();</code></pre></p>
 <p>They are 4830.</p>
 
                     
@@ -1472,6 +1566,14 @@
 
         
 <script src="../../gitbook/app.js"></script>
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-bigdata/bigdata.js"></script>
+    
+
+    
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/highlight.min.js"></script>
+    
 
     
     <script src="../../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.js"></script>
