@@ -6,53 +6,33 @@ bird strikes.
 # Authors
 
 This report is prepared by
-* [Full name](link to github account)
-* [Full name](link to github account)
-* [Full name](link to github account)
-* [Full name](link to github account)
-* [Full name](link to github account)
+* [William Farmer](http://github.com/willzfarmer)
+* [Parker Illig](http://github.com/pail4944)
+* [Kevin Gifford](http://github.com/kevinkgifford)
+* [John Raesly](http://github.com/jraesly)
+* [Andrew Krodinger](http://github.com/drewdinger)
 
-# (Question 1)
+# what are the condition:sky where usually caused a damage? - by fadhilfath
 
-This question was asked by (student's github id).
+![screenshot](skyconditions.png)
 
-![screenshot](screenshot.png)
+# Kevin Gifford: Flight Phase of Birdstrikes:
 
-(write your explanation for the reader as to where to look at this chart in order
-    to see the answer)
+![screenshot](phase.png)
 
-# (Question 2)
+# What is the correlation between the feet above the ground and the number of bird strikes
 
-This question was asked by (student's github id).
+![screenshot](feets.png)
 
-![screenshot](screenshot.png)
+# Which airport had the highest number of bird strikes? (Zhya215).
 
-(write your explanation for the reader as to where to look at this chart in order
-    to see the answer)
+![screenshot](strikes.png)
 
-# (Question 3)
+# Which airline have to incur most repair cost due to damage ? (sumi6109)
 
-This question was asked by (student's github id).
+![screenshot](./airlinesrepair.png)
 
-![screenshot](screenshot.png)
+# Which plane model strikes the most birds?
 
-(write your explanation for the reader as to where to look at this chart in order
-    to see the answer)
+![screenshot](./models.png)
 
-# (Question 4)
-
-This question was asked by (student's github id).
-
-![screenshot](screenshot.png)
-
-(write your explanation for the reader as to where to look at this chart in order
-    to see the answer)
-
-# (Question 5)
-
-This question was asked by (student's github id).
-
-![screenshot](screenshot.png)
-
-(write your explanation for the reader as to where to look at this chart in order
-    to see the answer)    
