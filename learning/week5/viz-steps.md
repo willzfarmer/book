@@ -115,15 +115,14 @@ function computeX(d, i) {
 }
 
 function computeHeight(d, i){
-    // TODO: fix this to return the correct height
-    return 10 + i * 50
+    return 100 * d["pop"] / 1500000000;
 }
 
 data.viz = _.map(data.countries, function(d, i){
         return {
             x: computeX(d, i),
             height: computeHeight(d, i)
-        }    
+        }
     })
 
 {% endlodash %}
@@ -181,18 +180,19 @@ function computeX(d, i) {
 }
 
 function computeHeight(d, i){
-    // TODO: fix this to return the correct height
-    return 10 + i * 50
+    return 100 * d["pop"] / 1500000000;
 }
 
-// TODO: add a new mapper function for width
+function computeWidth(d, i) {
+    return 10 * d["pop"] / 1500000000;
+}
 
 data.viz = _.map(data.countries, function(d, i){
-        // TODO: add a new attribute to each viz object
         return {
             x: computeX(d, i),
-            height: computeHeight(d, i)
-        }    
+            height: computeHeight(d, i),
+            width: computeWidth(d, i)
+        }
     })
 
 {% endlodash %}
@@ -203,8 +203,8 @@ data.viz = _.map(data.countries, function(d, i){
 {% template name='foo' %}
 
 <rect x="${d.x}"
-     width="20"
-     height="20"
+     width="${d.width}"
+     height="${d.height}"
      style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)" />
 
 {% endtemplate %}
