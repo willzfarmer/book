@@ -19,18 +19,11 @@ What is the distribution of courses across colleges?
 
 var groups = _.groupBy(data, function(d){
     return d['CrsPBAColl']
-})
+});
 
-// TODO: add real code to convert groups (which is an object) into an array like below
-// This array should have a lot more elements.
-var counts = [{"name": "AS","count": 3237},
-    {"name": "BU","count": 378},
-    {"name": "EB","count": 139},
-    {"name": "EN","count": 573}]
-
-console.log(counts)
-
-// TODO: modify the code below to produce a nice vertical bar charts
+var counts = _.map(Object.keys(groups), function(key) {
+    return {"name": key, "count": groups[key].length};
+});
 
 function computeX(d, i) {
     return 0
@@ -41,7 +34,7 @@ function computeHeight(d, i) {
 }
 
 function computeWidth(d, i) {
-    return 20 * i + 100
+    return d.count / 5
 }
 
 function computeY(d, i) {
